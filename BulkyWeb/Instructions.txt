@@ -1,0 +1,38 @@
+﻿```plaintext
+dotnet clean
+dotnet build
+dotnet run
+
+# Command to Create a Database
+
+To create a database and apply migrations:
+
+```bash
+dotnet ef database update
+```
+
+The above command will create a database, and inside, a table named `dbo._EFMigrationHistory` will be created.
+
+## Notes on Database
+
+Usually, any variable in the models table which ends with Id is considered as the primary key by default.or else we need to specify by using data annotations [Key] For example:
+
+```csharp
+public int CategoryId { get; set; }
+```
+
+Here, `21Id` is used to define the primary key.
+
+Any operation related to the database should be implemented inside the application db context file.
+
+# Adding Categories to Database
+
+After adding categories, execute the following commands to add tables to the database:
+
+```bash
+dotnet ef migrations add AddCategoryToDB
+dotnet ef database update
+```
+```
+
+This corrected version of your text provides clearer instructions and ensures proper formatting for readability.
