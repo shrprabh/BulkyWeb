@@ -35,4 +35,8 @@ dotnet ef database update
 ```
 ```
 
-This corrected version of your text provides clearer instructions and ensures proper formatting for readability.
+#adding records to table
+
+dotnet ef migrations add AddCategoryDataToCategoryTable
+dotnet ef database update
+
