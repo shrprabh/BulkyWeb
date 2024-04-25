@@ -40,3 +40,7 @@ dotnet ef database update
 dotnet ef migrations add AddCategoryDataToCategoryTable
 dotnet ef database update
 
+#using lux theme and using it in the app
+https://bootswatch.com/
+
+download lux theme bootstarp.css and replace the file in wwwroot/lib/dist/css/bootstap.css copy paste it and referece the same in layout.cshtml to see the magic
