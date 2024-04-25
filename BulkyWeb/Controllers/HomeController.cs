@@ -15,6 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // by default it takes the view which is same name as method like View("Index") if you specify View("Privacy") it will load Privacy file inside Home folder.
         return View();
     }
 
