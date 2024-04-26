@@ -31,10 +31,15 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            _db.Categories.Add(obj);
-            _db.SaveChanges();
-            // after excecution where to redirect using RedirectToAction
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(obj);
+                _db.SaveChanges();
+                // after excecution where to redirect using RedirectToAction
+                return RedirectToAction("Index");
+            }
+            // if its not valid stay in same page and display error message
+            return View(obj);
         }
     }
 }
