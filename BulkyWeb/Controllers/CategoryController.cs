@@ -51,6 +51,37 @@ namespace BulkyWeb.Controllers
             // if its not valid stay in same page and display error message
             return View(obj);
         }
+        public IActionResult Edit(int? categoryId)
+            {
+            if(categoryId == null || categoryId == 0)
+                {
+                    return NotFound();
+                }
+                Category? categoryFromDb = _db.Categories.Find(categoryId);
+                //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u => u.CategoryId == categoryId);
+                //Category? categoryFromDb3 = _db.Categories.Where(u => u.CategoryId == categoryId).FirstOrDefault();
+            if (categoryFromDb==null)
+                {
+                    return NotFound();
+
+                }
+                return View(categoryFromDb);
+            }
+
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Update(obj);
+                _db.SaveChanges();
+                // after excecution where to redirect using RedirectToAction
+                return RedirectToAction("Index");
+            }
+            // if its not valid stay in same page and display error message
+            return View(obj);
+        }
     }
 }
 
