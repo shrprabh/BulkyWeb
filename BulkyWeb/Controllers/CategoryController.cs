@@ -31,6 +31,16 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
+            // Custom validation where the name and display order should not be same
+            if (obj.Name != null && obj.Name.ToLower() == obj.DisplayOrder.ToString())
+            {
+                // the parameter is the key in form
+                ModelState.AddModelError("name", "The Name Cannot Exactly Match the  Display order");
+            }
+            if (obj.Name!=null && obj.Name.ToLower() == "test")
+            {
+                ModelState.AddModelError("", "Test in a Invalid Value");
+            }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
