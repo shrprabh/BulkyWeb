@@ -82,6 +82,37 @@ namespace BulkyWeb.Controllers
             // if its not valid stay in same page and display error message
             return View(obj);
         }
+        // used for retreiving the details
+        public IActionResult Delete(int? categoryId)
+        {
+            if (categoryId == null || categoryId == 0)
+            {
+                return NotFound();
+            }
+            Category? categoryFromDb = _db.Categories.Find(categoryId);
+            //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u => u.CategoryId == categoryId);
+            //Category? categoryFromDb3 = _db.Categories.Where(u => u.CategoryId == categoryId).FirstOrDefault();
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+
+            }
+            return View(categoryFromDb);
+        }
+
+        // since first and second action has same name we change the method name but the parameter will be same
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeletePOST(int? categoryId)
+        {
+            Category obj = _db.Categories.Find(categoryId);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
 
